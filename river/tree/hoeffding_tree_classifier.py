@@ -411,7 +411,10 @@ class HoeffdingTreeClassifier(HoeffdingTree, base.Classifier):
             else:
                 leaf = self._root
 
-            proba.update(leaf.prediction(x, tree=self))
+            try:
+                proba.update(leaf.prediction(x, tree=self))
+            except TypeError:
+                pass           
         return proba
 
     @property
